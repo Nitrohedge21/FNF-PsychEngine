@@ -27,12 +27,13 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
+		'options',
+		/*#if MODS_ALLOWED 'mods', #end*/ //This was commented out to disable mods
 		'credits'
 	];
 
-	var leftOption:String = #if ACHIEVEMENTS_ALLOWED 'achievements' #else null #end;
-	var rightOption:String = 'options';
+	var leftOption:String = null; /*#if ACHIEVEMENTS_ALLOWED 'achievements' #else null #end;*/ // This was commented out to remove achievements.
+	var rightOption:String = null; /*'options';*/ // This was moved to the main item list.
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
@@ -83,7 +84,8 @@ class MainMenuState extends MusicBeatState
 		{
 			var item:FlxSprite = createMenuItem(option, 0, (num * 140) + 90);
 			item.y += (4 - optionShit.length) * 70; // Offsets for when you have anything other than 4 items
-			item.screenCenter(X);
+			item.x = 75;
+			//item.screenCenter(X);
 		}
 
 		if (leftOption != null)
@@ -134,6 +136,7 @@ class MainMenuState extends MusicBeatState
 		menuItem.animation.addByPrefix('selected', '$name selected', 24, true);
 		menuItem.animation.play('idle');
 		menuItem.updateHitbox();
+		menuItem.scale.set(0.9,0.9); // This was added to scale the buttons down a bit.
 		
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
 		menuItem.scrollFactor.set();

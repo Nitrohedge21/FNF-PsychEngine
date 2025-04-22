@@ -5,6 +5,6 @@ echo BUILDING GAME
 haxelib run lime build windows -release
 echo.
 echo done.
-pause
+::pause
 pwd
-explorer.exe export\release\windows\bin
+:: explorer.exe export\release\windows\bin
